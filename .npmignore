@@ -1,0 +1,16 @@
+node_modules/
+.github/
+.editorconfig
+.eslintignore
+.eslintrc.json
+.htmlhintrc
+.gitattributes
+.gitignore
+.nvmrc
+importmap.json
+importmap.yaml
+*.config.js
+*.tgz
+*.log
+*.min.js
+*.cjs

@@ -1,0 +1,40 @@
+{
+  "name": "npm-template",
+  "version": "1.0.3",
+  "description": "A template repo for npm packages",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "type": "module",
+  "private": false,
+  "scripts": {
+    "test": "npm run lint:js && npm run build",
+    "preversion": "npm test",
+    "prepare": "npm run build:js",
+    "lint:js": "eslint .",
+    "fix:js": "eslint. --fix",
+    "build": "npm run build:js",
+    "dev": "rollup -cw",
+    "build:js": "rollup -c",
+    "create:lock": "npm i --package-lock-only",
+    "version:bump": "npm run version:bump:patch",
+    "version:bump:patch": "npm version --no-git-tag-version patch",
+    "version:bump:minor": "npm version --no-git-tag-version minor",
+    "version:bump:major": "npm version --no-git-tag-version major"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shgysk8zer0/npm-template.git"
+  },
+  "author": "Chris Zuber <admin@kernvalley.us>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shgysk8zer0/npm-template/issues"
+  },
+  "homepage": "https://github.com/shgysk8zer0/npm-template#readme",
+  "devDependencies": {
+    "eslint": "^8.41.0",
+    "rollup": "^3.23.0"
+  }
+}
