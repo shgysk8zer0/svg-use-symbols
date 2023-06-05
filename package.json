@@ -35,6 +35,6 @@
   "homepage": "https://github.com/shgysk8zer0/npm-template#readme",
   "devDependencies": {
     "eslint": "^8.41.0",
-    "rollup": "^3.23.0"
+    "rollup": "^3.23.1"
   }
 }
