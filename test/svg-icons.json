@@ -1,7 +1,0 @@
-[{
-  "output": "test/icons.svg",
-  "icons": {
-    "file": "https://cdn.kernvalley.us/img/octicons/file.svg",
-    "file-code": "test/file-code.svg"
-  }
-}]

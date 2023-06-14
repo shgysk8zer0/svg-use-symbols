@@ -12,6 +12,9 @@
       "require": "./generator.cjs"
     }
   },
+  "bin": {
+    "svg-use-symbols": "./cli.mjs"
+  },
   "engines": {
     "node": ">=18.0.0"
   },
@@ -32,14 +35,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shgysk8zer0/npm-template.git"
+    "url": "git+https://github.com/shgysk8zer0/svg-use-symbols.git"
   },
   "author": "Chris Zuber <admin@kernvalley.us>",
   "license": "MIT",
+  "funding": [
+    {
+      "type": "librepay",
+      "url": "https://liberapay.com/shgysk8zer0"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/shgysk8zer0"
+    }
+  ],
   "bugs": {
-    "url": "https://github.com/shgysk8zer0/npm-template/issues"
+    "url": "https://github.com/shgysk8zer0/svg-use-symbols/issues"
   },
-  "homepage": "https://github.com/shgysk8zer0/npm-template#readme",
+  "homepage": "https://github.com/shgysk8zer0/svg-use-symbols#readme",
   "devDependencies": {
     "@shgysk8zer0/js-utils": "^1.0.0"
   },

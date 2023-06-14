@@ -38,18 +38,17 @@ npm i @shgysk8zer0/svg-use-symbols
 
 ### CLI
 ```
-Usage: @shgysk8zer0/svg-use-symbols [options] <config>
+Usage: @shgysk8zer0/svg-use-symbols [options]
 
 An npm package for use with `<svg><use xlink:href=""></use></svg>`
 
-Arguments:
-  config                     JSON or YAML config file.
-
 Options:
-  -V, --version              output the version number
-  -e, --encoding <encoding>  encoding (default: "utf8")
-  -o, --output [output]      output file
-  -h, --help                 display help for command
+  -V, --version                output the version number
+  -e, --encoding <encoding>    encoding (default: "utf8")
+  -c, --config [config]        JSON or YAML config file
+  -d, --directory [directory]  path to directory of SVGs
+  -o, --output [output]        output file
+  -h, --help                   display help for command
 ```
 
 ```bash

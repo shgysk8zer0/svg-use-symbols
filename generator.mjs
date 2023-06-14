@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 import { readJSONFile } from '@shgysk8zer0/npm-utils/json';
 import { readYAMLFile } from '@shgysk8zer0/npm-utils/yaml';
-import { readFile, writeFile, getFileExtension, ENCODING } from '@shgysk8zer0/npm-utils/fs';
+import { readFile, writeFile, ENCODING, listDirByExt } from '@shgysk8zer0/npm-utils/fs';
 import { SVG as SVG_MIMES } from '@shgysk8zer0/npm-utils/mimes';
 import { JSON as JSON_EXTS, YAML as YAML_EXTS } from '@shgysk8zer0/npm-utils/exts';
 import { isURL, isObject } from '@shgysk8zer0/npm-utils/utils';
 import { CSV as CSV_EXTS, readCSVFile } from './csv.mjs';
+import { basename, extname, isAbsolute } from 'node:path';
 import { load } from 'cheerio';
 
 const ROOT = process.cwd();
@@ -25,7 +26,7 @@ function getFileType(ext) {
 }
 
 async function readConfig(path, { encoding = ENCODING, signal } = {}) {
-	const ext = getFileExtension(path);
+	const ext = extname(path);
 
 	switch(getFileType(ext)) {
 		case 'json': return readJSONFile(`${ROOT}/${path}`, { encoding, signal });
@@ -55,7 +56,11 @@ async function loadIcon(loc, { encoding = ENCODING, signal } = {}) {
 		return await fetchIcon(loc, { signal });
 	} else {
 		try {
-			return await readFile(`${ROOT}/${loc}`, { encoding, signal });
+			if (isAbsolute(loc)) {
+				return await readFile(loc, { encoding, signal });
+			} else {
+				return await readFile(`${ROOT}/${loc}`, { encoding, signal });
+			}
 		} catch {
 			throw new Error(`Unable to find or read file at ${loc}.`);
 		}
@@ -119,4 +124,18 @@ export async function generateSymbols(configFile, { encoding = ENCODING, output,
 			}
 		}));
 	}
+}
+
+export async function generateSymbolsFromDirectory(directory, { encoding, output, signal } = {}) {
+	if (typeof output !== 'string') {
+		throw new Error('Output is a required option for directory usage.');
+	}
+
+	const svgs = await listDirByExt(`${ROOT}/${directory}`, '.svg');
+	const symbols = await Promise.all(svgs.map(async path => {
+		const id = basename(path).replace(extname(path), '');
+		return await generateSymbol(id, path, { encoding, signal })
+	}));
+
+	await writeSVG(output, symbols, { encoding, signal });
 }
