@@ -27,7 +27,7 @@
     "build": "npm run build:cli && npm run build:generator",
     "build:cli": "rollup -c cli.config.js",
     "build:generator": "rollup -c generator.config.js",
-    "clear:output": "rm ./output/*.svg",
+    "clear:output": "rm -f ./output/*.svg",
     "test:all": "npm run test:list & npm run test:dir & npm run test:json & npm run test:yaml & npm run test:csv",
     "test:list": "./cli.mjs -l icons/markdown.svg,icons/mark-github.svg -o output/list.svg",
     "test:dir": "./cli.mjs -d icons/ -o output/dir.svg",
