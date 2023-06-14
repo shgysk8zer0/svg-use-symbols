@@ -81,7 +81,7 @@ export async function generateSymbol(id, loc, { encoding, signal } = {}) {
 export async function writeSVG(path, symbols, { encoding } = {}) {
 	await writeFile(
 		`${ROOT}/${path}`,
-		`<svg xmlns="http://www.w3.org/2000/svg">${symbols}</svg>`,
+		`<svg xmlns="http://www.w3.org/2000/svg">${symbols.join('')}</svg>`,
 		{ encoding },
 	);
 

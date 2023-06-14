@@ -19,7 +19,7 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "test": "npm run lint:js && npm run build",
+    "test": "npm run lint:js && npm run build && npm run clear:output && npm run test:all",
     "preversion": "npm test",
     "prepare": "npm run build",
     "lint:js": "eslint .",
@@ -27,6 +27,13 @@
     "build": "npm run build:cli && npm run build:generator",
     "build:cli": "rollup -c cli.config.js",
     "build:generator": "rollup -c generator.config.js",
+    "clear:output": "rm ./output/*.svg",
+    "test:all": "npm run test:list & npm run test:dir & npm run test:json & npm run test:yaml & npm run test:csv",
+    "test:list": "./cli.mjs -l icons/markdown.svg,icons/mark-github.svg -o output/list.svg",
+    "test:dir": "./cli.mjs -d icons/ -o output/dir.svg",
+    "test:json": "./cli.mjs -c config/icons.json -o output/json.svg",
+    "test:yaml": "./cli.mjs -c config/icons.yml",
+    "test:csv": "./cli.mjs -c config/icons.csv -o output/csv.svg",
     "create:lock": "npm i --package-lock-only",
     "version:bump": "npm run version:bump:patch",
     "version:bump:patch": "npm version --no-git-tag-version patch",

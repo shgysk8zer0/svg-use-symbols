@@ -8,7 +8,9 @@ node_modules/
 .gitignore
 .nvmrc
 *.svg
-test/
+icons/
+output/
+config/
 *.config.js
 *.tgz
 *.log

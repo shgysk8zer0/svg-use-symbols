@@ -47,12 +47,14 @@ Options:
   -e, --encoding <encoding>    encoding (default: "utf8")
   -c, --config [config]        JSON or YAML config file
   -d, --directory [directory]  path to directory of SVGs
+  -l, --list [list]            comma separated list of SVGs
   -o, --output [output]        output file
   -h, --help                   display help for command
 ```
 
 ```bash
-svg-use-symbols path/to/config.yml -o img/icons.svg
+svg-use-symbols -c path/to/config.yml -o img/icons.svg
+svg use-symbols -d /path/to/svgs/ -o img/icons.svg
 ```
 
 ## Config files

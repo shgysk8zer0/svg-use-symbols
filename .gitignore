@@ -1,5 +1,8 @@
 *.cjs
 *.min.js
+*.map
+output/*
+!output/.gitkeep
 # Logs
 logs
 *.log
