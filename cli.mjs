@@ -7,7 +7,11 @@ import { extname, basename } from 'node:path';
 import { generateSymbols, generateSymbolsFromDirectory, generateSymbol, writeSVG } from './generator.mjs';
 
 async function init() {
-	const { name: NAME, version: VERSION, description: DESCRIPTION } = await readJSONFile('./package.json');
+	const {
+		name: NAME,
+		version: VERSION,
+		description: DESCRIPTION,
+	} = await readJSONFile(new URL('./package.json', import.meta.url).pathname);
 	program
 		.name(NAME)
 		.version(VERSION)
