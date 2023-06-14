@@ -1,0 +1,5 @@
+- output: output/yaml.svg
+  icons:
+    mark-github: icons/mark-github.svg
+    markdown: icons/markdown.svg
+    link-external: https://cdn.kernvalley.us/img/octicons/link-external.svg

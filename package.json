@@ -1,22 +1,39 @@
 {
-  "name": "npm-template",
-  "version": "1.0.3",
-  "description": "A template repo for npm packages",
-  "main": "index.js",
+  "name": "@shgysk8zer0/svg-use-symbols",
+  "version": "1.0.0",
+  "description": "An npm package for use with `<svg><use xlink:href=\"\"></use></svg>`",
+  "private": false,
+  "type": "module",
+  "main": "generator.cjs",
+  "module": "generator.mjs",
+  "exports": {
+    ".": {
+      "import": "./generator.mjs",
+      "require": "./generator.cjs"
+    }
+  },
+  "bin": {
+    "svg-use-symbols": "./cli.mjs"
+  },
   "engines": {
     "node": ">=18.0.0"
   },
-  "type": "module",
-  "private": false,
   "scripts": {
-    "test": "npm run lint:js && npm run build",
+    "test": "npm run lint:js && npm run clear:output && npm run test:all",
     "preversion": "npm test",
-    "prepare": "npm run build:js",
+    "prepare": "npm run build",
     "lint:js": "eslint .",
     "fix:js": "eslint. --fix",
-    "build": "npm run build:js",
-    "dev": "rollup -cw",
-    "build:js": "rollup -c",
+    "build": "npm run build:cli && npm run build:generator",
+    "build:cli": "rollup -c cli.config.js",
+    "build:generator": "rollup -c generator.config.js",
+    "clear:output": "rm -f ./output/*.svg",
+    "test:all": "npm run test:list & npm run test:dir & npm run test:json & npm run test:yaml & npm run test:csv",
+    "test:list": "./cli.mjs -l icons/markdown.svg,icons/mark-github.svg -o output/list.svg",
+    "test:dir": "./cli.mjs -d icons/ -o output/dir.svg",
+    "test:json": "./cli.mjs -c config/icons.json -o output/json.svg",
+    "test:yaml": "./cli.mjs -c config/icons.yml",
+    "test:csv": "./cli.mjs -c config/icons.csv -o output/csv.svg",
     "create:lock": "npm i --package-lock-only",
     "version:bump": "npm run version:bump:patch",
     "version:bump:patch": "npm version --no-git-tag-version patch",
@@ -25,16 +42,30 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shgysk8zer0/npm-template.git"
+    "url": "git+https://github.com/shgysk8zer0/svg-use-symbols.git"
   },
   "author": "Chris Zuber <admin@kernvalley.us>",
   "license": "MIT",
+  "funding": [
+    {
+      "type": "librepay",
+      "url": "https://liberapay.com/shgysk8zer0"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/shgysk8zer0"
+    }
+  ],
   "bugs": {
-    "url": "https://github.com/shgysk8zer0/npm-template/issues"
+    "url": "https://github.com/shgysk8zer0/svg-use-symbols/issues"
   },
-  "homepage": "https://github.com/shgysk8zer0/npm-template#readme",
+  "homepage": "https://github.com/shgysk8zer0/svg-use-symbols#readme",
   "devDependencies": {
-    "eslint": "^8.41.0",
-    "rollup": "^3.24.0"
+    "@shgysk8zer0/js-utils": "^1.0.0"
+  },
+  "dependencies": {
+    "@shgysk8zer0/npm-utils": "^1.0.5",
+    "cheerio": "^1.0.0-rc.12",
+    "commander": "^10.0.1"
   }
 }
