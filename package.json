@@ -1,6 +1,6 @@
 {
   "name": "@shgysk8zer0/svg-use-symbols",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An npm package for use with `<svg><use xlink:href=\"\"></use></svg>`",
   "keywords": [
     "svg",
