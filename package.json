@@ -19,7 +19,7 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "test": "npm run lint:js && npm run build && npm run clear:output && npm run test:all",
+    "test": "npm run lint:js && npm run clear:output && npm run test:all",
     "preversion": "npm test",
     "prepare": "npm run build",
     "lint:js": "eslint .",

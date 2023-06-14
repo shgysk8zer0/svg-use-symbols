@@ -44,6 +44,17 @@ npm i @shgysk8zer0/svg-use-symbols
 
 ## Usage
 
+### In HTML
+
+This generates a series of `<symbol>`s, which have the counterpart of `<use>` for
+using the icons on a webiste:
+
+```html
+<svg>
+  <use xlink:href="/path/to/icons.svg#id"></use>
+</svg>
+```
+
 ### CLI
 ```
 Usage: @shgysk8zer0/svg-use-symbols [options]
@@ -68,9 +79,55 @@ svg use-symbols -d path/to/svgs/ -o img/icons.svg
 svg-use-symbols -l icons/1.svg,icons/2.svg -o img/icons.svg
 ```
 
+## Node
+
+### Simple usage
+```js
+import { generateSymbols } from '@shgysk8zer0/svg-use-symbols';
+
+await generateSymbols('config.json');
+```
+
+### Using `require()`
+
+```js
+const { generateSymbols } = require('@shgysk8zer0/svg-use-symbols');
+
+// Top-level await not allowed
+generateSymbols('config.json').catch(console.error);
+```
+
+### Advanced usage
+
+```js
+import { generateSymbol, writeSVG } from '@shgysk8zer0/svg-use-symbols';
+const controller = new AbortController();
+
+const config = {
+  "file-media": "octicons/file-media.svg",
+  "external": "https://example.com/external.svg",
+};
+
+const symbols = await Promise.all(
+  Object.entries(config).map(async ([id, path]) => {
+    try {
+      const symbol = await generateSymbol(id, path, { encoding: 'utf8', signal });
+      // Mutate symbol, perhaps?
+      return symbol;
+    } catch(err) {
+      console.error(err);
+      controller.abort();
+    }
+  })
+);
+
+await writeSVG('output.svg', symbols, { encoding: 'utf8' });
+```
+
 ## Config files
 This supports YAML, JSON, and *to a limited extent*, CSV. CSV is temporarily
 offered for those migrating from `svg-sprite-generator` and will be removed in v2.
+Please see the section on migrating.
 
 For JSON and YAML, two different formats are supported:
 
@@ -106,7 +163,10 @@ It may also use:
 ]
 ```
 
-### Migrating from `svg-sprite-generator`
+This will create output files `output.svg` and `output2.svg`, each containing
+there respective `<symbol>`s.
+
+## Migrating from `svg-sprite-generator`
 
 ```bash
 svg-use-symbols -m path/to/config.csv -o path/to/config.json
@@ -115,6 +175,3 @@ svg-use-symbols --migrate path/to/config.csv --format json --output /path/to/con
 # Or
 svg-use-symbols --migrate path/to/config.csv --format yaml --output /path/to/config.yaml
 ```
-
-This form **MUST NOT** have output (`-o` or `--output`) set, as it is for generating
-multiple outputs, each specified by the `output` value.

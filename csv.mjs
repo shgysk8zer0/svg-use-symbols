@@ -10,6 +10,7 @@ export async function readCSVFile(path, { encoding, signal } = {}) {
 
 	const contents = await readFile(path, { encoding, signal });
 	return contents
+		.replaceAll('\r', LF)
 		.split(LF)
 		.filter(l => l.length !== 0)
 		.map(line => line.split(',').map(c => c.trim().replaceAll('"', '') ));

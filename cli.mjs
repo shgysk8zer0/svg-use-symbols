@@ -15,9 +15,9 @@ async function init() {
 		.option('-c, --config [config]', 'JSON or YAML config file')
 		.option('-d, --directory [directory]', 'path to directory of SVGs')
 		.option('-e, --encoding [encoding]', 'encoding', 'utf8')
-		.option('-f, --format [format]', 'output format for migrating from CSV', 'json')
+		.option('-f, --format [format]', 'output format for migrating from CSV', 'json') // Migrate opt
 		.option('-l, --list [list]', 'comma separated list of SVGs')
-		.option('-m, --migrate [migrate]', 'path to deprecated CSV config file')
+		.option('-m, --migrate [migrate]', 'path to deprecated CSV config file') // Migrate opt
 		.option('-o, --output [output]', 'output file')
 		.parse(process.argv);
 
