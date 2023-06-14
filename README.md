@@ -34,6 +34,14 @@ An npm package for use with `<svg><use xlink:href=""></use></svg>`
 npm i @shgysk8zer0/svg-use-symbols
 ```
 
+## Supports
+- Parsing from JSON and YAML files
+  - Creating multiple outputs by using an array of objects with `output` and `icons`
+  - Creating a single output file by using simple `id` and `path` object
+- Creating from directories
+- Fetching SVGs from URLs
+- Migrating from `svg-sprite-generate` (converts CSV to JSON or YAML)
+
 ## Usage
 
 ### CLI
@@ -44,17 +52,20 @@ An npm package for use with `<svg><use xlink:href=""></use></svg>`
 
 Options:
   -V, --version                output the version number
-  -e, --encoding <encoding>    encoding (default: "utf8")
   -c, --config [config]        JSON or YAML config file
   -d, --directory [directory]  path to directory of SVGs
+  -e, --encoding [encoding]    encoding (default: "utf8")
+  -f, --format [format]        output format for migrating from CSV (default: "json")
   -l, --list [list]            comma separated list of SVGs
+  -m, --migrate [migrate]      path to deprecated CSV config file
   -o, --output [output]        output file
   -h, --help                   display help for command
 ```
 
 ```bash
 svg-use-symbols -c path/to/config.yml -o img/icons.svg
-svg use-symbols -d /path/to/svgs/ -o img/icons.svg
+svg use-symbols -d path/to/svgs/ -o img/icons.svg
+svg-use-symbols -l icons/1.svg,icons/2.svg -o img/icons.svg
 ```
 
 ## Config files
@@ -93,6 +104,16 @@ It may also use:
     }
   }
 ]
+```
+
+### Migrating from `svg-sprite-generator`
+
+```bash
+svg-use-symbols -m path/to/config.csv -o path/to/config.json
+# Or
+svg-use-symbols --migrate path/to/config.csv --format json --output /path/to/config.json
+# Or
+svg-use-symbols --migrate path/to/config.csv --format yaml --output /path/to/config.yaml
 ```
 
 This form **MUST NOT** have output (`-o` or `--output`) set, as it is for generating
