@@ -2,6 +2,15 @@
   "name": "@shgysk8zer0/svg-use-symbols",
   "version": "1.0.0",
   "description": "An npm package for use with `<svg><use xlink:href=\"\"></use></svg>`",
+  "keywords": [
+    "svg",
+    "svg-sprites",
+    "svg-icons",
+    "use",
+    "symbols",
+    "svg-use",
+    "svg-symbols"
+  ],
   "private": false,
   "type": "module",
   "main": "generator.cjs",
