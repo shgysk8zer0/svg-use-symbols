@@ -7,10 +7,9 @@ node_modules/
 .gitattributes
 .gitignore
 .nvmrc
-importmap.json
-importmap.yaml
+*.svg
+test/
 *.config.js
 *.tgz
 *.log
 *.min.js
-*.cjs
