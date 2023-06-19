@@ -75,6 +75,6 @@
   "dependencies": {
     "@shgysk8zer0/npm-utils": "^1.0.5",
     "cheerio": "^1.0.0-rc.12",
-    "commander": "^10.0.1"
+    "commander": "^11.0.0"
   }
 }
