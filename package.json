@@ -1,6 +1,6 @@
 {
   "name": "@shgysk8zer0/svg-use-symbols",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "An npm package for use with `<svg><use xlink:href=\"\"></use></svg>`",
   "keywords": [
     "svg",
@@ -43,11 +43,11 @@
     "test:json": "./cli.mjs -c config/icons.json -o output/json.svg",
     "test:yaml": "./cli.mjs -c config/icons.yml",
     "test:csv": "./cli.mjs -c config/icons.csv -o output/csv.svg",
-    "create:lock": "npm i --package-lock-only",
+    "create:lock": "npm i --package-lock-only --ignore-scripts --no-audit --no-fund",
     "version:bump": "npm run version:bump:patch",
-    "version:bump:patch": "npm version --no-git-tag-version patch",
-    "version:bump:minor": "npm version --no-git-tag-version minor",
-    "version:bump:major": "npm version --no-git-tag-version major"
+    "version:bump:patch": "npm version --no-git-tag-version patch && npm run create:lock",
+    "version:bump:minor": "npm version --no-git-tag-version minor && npm run create:lock",
+    "version:bump:major": "npm version --no-git-tag-version major && npm run create:lock"
   },
   "repository": {
     "type": "git",
@@ -70,10 +70,10 @@
   },
   "homepage": "https://github.com/shgysk8zer0/svg-use-symbols#readme",
   "devDependencies": {
-    "@shgysk8zer0/js-utils": "^1.0.0"
+    "@shgysk8zer0/js-utils": "^1.0.1"
   },
   "dependencies": {
-    "@shgysk8zer0/npm-utils": "^1.0.5",
+    "@shgysk8zer0/npm-utils": "^1.1.0",
     "cheerio": "^1.0.0-rc.12",
     "commander": "^11.0.0"
   }
