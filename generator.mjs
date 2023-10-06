@@ -2,15 +2,14 @@
 import { readJSONFile } from '@shgysk8zer0/npm-utils/json';
 import { readYAMLFile } from '@shgysk8zer0/npm-utils/yaml';
 import { readFile, writeFile, ENCODING, listDirByExt } from '@shgysk8zer0/npm-utils/fs';
-import { SVG as SVG_MIMES } from '@shgysk8zer0/npm-utils/mimes';
-import { JSON as JSON_EXTS, YAML as YAML_EXTS } from '@shgysk8zer0/npm-utils/exts';
+import { SVG as SVG_MIME } from '@shgysk8zer0/consts/mimes';
+import { JSON as JSON_EXTS, YAML as YAML_EXTS } from '@shgysk8zer0/consts/exts';
 import { isURL, isObject } from '@shgysk8zer0/npm-utils/utils';
 import { CSV as CSV_EXTS, readCSVFile } from './csv.mjs';
 import { basename, extname, isAbsolute } from 'node:path';
 import { load } from 'cheerio';
 
 const ROOT = process.cwd();
-const MIME = SVG_MIMES[0];
 const EXT_TYPES = {
 	json: JSON_EXTS,
 	yaml: YAML_EXTS,
@@ -38,13 +37,13 @@ async function readConfig(path, { encoding = ENCODING, signal } = {}) {
 
 async function fetchIcon(url, { signal } = {}) {
 	const resp = await fetch(url, {
-		headers: new Headers({ Accept: MIME }),
+		headers: new Headers({ Accept: SVG_MIME }),
 		signal,
 	});
 
 	if (! resp.ok) {
 		throw new Error(`Error fetching ${url}`);
-	} else if (! resp.headers.get('Content-Type').startsWith(MIME)) {
+	} else if (! resp.headers.get('Content-Type').startsWith(SVG_MIME)) {
 		throw new TypeError(`<${url}> is not an SVG. Content-Type: ${resp.headers.get('Content-Type')}`);
 	} else {
 		return resp.text();
@@ -134,7 +133,7 @@ export async function generateSymbolsFromDirectory(directory, { encoding, output
 	const svgs = await listDirByExt(`${ROOT}/${directory}`, '.svg');
 	const symbols = await Promise.all(svgs.map(async path => {
 		const id = basename(path).replace(extname(path), '');
-		return await generateSymbol(id, path, { encoding, signal })
+		return await generateSymbol(id, path, { encoding, signal });
 	}));
 
 	await writeSVG(output, symbols, { encoding, signal });
