@@ -1,6 +1,6 @@
 {
   "name": "@shgysk8zer0/svg-use-symbols",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An npm package for use with `<svg><use xlink:href=\"\"></use></svg>`",
   "keywords": [
     "svg",
@@ -73,7 +73,8 @@
     "@shgysk8zer0/js-utils": "^1.0.1"
   },
   "dependencies": {
-    "@shgysk8zer0/npm-utils": "^1.1.0",
+    "@shgysk8zer0/consts": "^1.0.7",
+    "@shgysk8zer0/npm-utils": "^1.1.2",
     "cheerio": "^1.0.0-rc.12",
     "commander": "^11.0.0"
   }
