@@ -76,6 +76,6 @@
     "@shgysk8zer0/consts": "^1.0.7",
     "@shgysk8zer0/npm-utils": "^1.1.2",
     "cheerio": "^1.0.0-rc.12",
-    "commander": "^11.0.0"
+    "commander": "^11.1.0"
   }
 }
