@@ -73,7 +73,7 @@
     "@shgysk8zer0/js-utils": "^1.0.1"
   },
   "dependencies": {
-    "@shgysk8zer0/consts": "^1.0.7",
+    "@shgysk8zer0/consts": "^1.0.8",
     "@shgysk8zer0/npm-utils": "^1.1.2",
     "cheerio": "^1.0.0-rc.12",
     "commander": "^11.1.0"
