@@ -28,14 +28,13 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "test": "npm run lint:js && npm run clear:output && npm run test:all",
+    "test": "npm run build && npm run lint:js && npm run clear:output && npm run test:all",
     "preversion": "npm test",
     "prepare": "npm run build",
     "lint:js": "eslint .",
     "fix:js": "eslint. --fix",
-    "build": "npm run build:cli && npm run build:generator",
-    "build:cli": "rollup -c cli.config.js",
-    "build:generator": "rollup -c generator.config.js",
+    "build": "npm run build:js",
+    "build:js": "rollup -c rollup.config.js",
     "clear:output": "rm -f ./output/*.svg",
     "test:all": "npm run test:list & npm run test:dir & npm run test:json & npm run test:yaml & npm run test:csv",
     "test:list": "./cli.mjs -l icons/markdown.svg,icons/mark-github.svg -o output/list.svg",

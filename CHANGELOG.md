@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Use `@shgysk8zer0/consts`
+- Update/simplify rollup config & build script
 
 ### Fixed
 - Update `externals` in rollup config to use `@shgysk8zer0/consts`
