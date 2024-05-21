@@ -7,6 +7,7 @@ import { JSON as JSON_EXTS, YAML as YAML_EXTS } from '@shgysk8zer0/consts/exts';
 import { isURL, isObject } from '@shgysk8zer0/npm-utils/utils';
 import { CSV as CSV_EXTS, readCSVFile } from './csv.mjs';
 import { basename, extname, isAbsolute } from 'node:path';
+import { getFileURL } from '@shgysk8zer0/npm-utils/path';
 import { load } from 'cheerio';
 
 const ROOT = process.cwd();
@@ -78,13 +79,22 @@ export async function generateSymbol(id, loc, { encoding, signal } = {}) {
 }
 
 export async function writeSVG(path, symbols, { encoding } = {}) {
-	await writeFile(
-		`${ROOT}/${path}`,
-		`<svg xmlns="http://www.w3.org/2000/svg">${symbols.join('')}</svg>`,
-		{ encoding },
-	);
+	if (! Array.isArray(symbols)) {
+		throw new TypeError('symbols must be an array of <symbol>s.');
+	} else if (typeof path === 'string') {
+		await writeSVG(getFileURL(path, ROOT), symbols, { encoding });
+	} else if (! (path instanceof URL)) {
+		throw new TypeError('Path must be a URL or string.');
+	} else {
+		await writeFile(
+			path,
+			`<svg xmlns="http://www.w3.org/2000/svg">${symbols.join('')}</svg>`,
+			{ encoding },
+		);
 
-	console.info(`Wrote ${symbols.length} <symbol>s to "${path}".`);
+		console.info(`Wrote ${symbols.length} <symbol>s to "${path}".`);
+	}
+
 }
 
 export async function generateSymbols(configFile, { encoding = ENCODING, output, signal } = {}) {
