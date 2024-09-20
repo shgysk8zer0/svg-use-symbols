@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.1.3] - 2024-09-20
+
+### Changed
+- Update dependencies and config
+- Change from using `.mjs` to `.js`
+
 ## [v1.1.2] - 2024-05-21
 
 ### Fixed
