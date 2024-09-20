@@ -12,6 +12,7 @@ icons/
 output/
 config/
 *.config.js
+*.test.js
 *.tgz
 *.log
 *.min.js

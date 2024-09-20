@@ -5,7 +5,7 @@ import { readFile, writeFile, ENCODING, listDirByExt } from '@shgysk8zer0/npm-ut
 import { SVG as SVG_MIME } from '@shgysk8zer0/consts/mimes';
 import { JSON as JSON_EXTS, YAML as YAML_EXTS } from '@shgysk8zer0/consts/exts';
 import { isURL, isObject } from '@shgysk8zer0/npm-utils/utils';
-import { CSV as CSV_EXTS, readCSVFile } from './csv.mjs';
+import { CSV as CSV_EXTS, readCSVFile } from './csv.js';
 import { basename, extname, isAbsolute } from 'node:path';
 import { getFileURL } from '@shgysk8zer0/npm-utils/path';
 import { load } from 'cheerio';
@@ -112,7 +112,6 @@ export async function generateSymbols(configFile, { encoding = ENCODING, output,
 
 			await writeSVG(output, symbols, { encoding, signal });
 		}
-
 	} else if (Array.isArray(config)) {
 		if (typeof output === 'string') {
 			throw new Error('Output is ignored when the config file contains an array for multiple output files.');

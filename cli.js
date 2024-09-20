@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import { readJSONFile, writeJSONFile } from '@shgysk8zer0/npm-utils/json';
 import { writeYAMLFile } from '@shgysk8zer0/npm-utils/yaml';
-import { readCSVFile } from './csv.mjs';
+import { readCSVFile } from './csv.js';
 import { program } from 'commander';
 import { extname, basename } from 'node:path';
-import { generateSymbols, generateSymbolsFromDirectory, generateSymbol, writeSVG } from './generator.mjs';
+import { generateSymbols, generateSymbolsFromDirectory, generateSymbol, writeSVG } from './generator.js';
 
 async function init() {
 	const {
