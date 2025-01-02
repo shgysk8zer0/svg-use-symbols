@@ -88,6 +88,6 @@
     "@shgysk8zer0/consts": "^1.0.8",
     "@shgysk8zer0/npm-utils": "^1.1.3",
     "cheerio": "^1.0.0",
-    "commander": "^12.1.0"
+    "commander": "^13.0.0"
   }
 }
