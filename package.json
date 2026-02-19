@@ -81,7 +81,7 @@
   },
   "homepage": "https://github.com/shgysk8zer0/svg-use-symbols#readme",
   "devDependencies": {
-    "@shgysk8zer0/eslint-config": "^1.0.4",
+    "@shgysk8zer0/eslint-config": "^1.0.5",
     "@shgysk8zer0/js-utils": "^1.0.2"
   },
   "dependencies": {
