@@ -1,3 +1,3 @@
-import node from '@shgysk8zer0/eslint-config/node.js';
+import { node } from '@shgysk8zer0/eslint-config';
 
-export default node({ files: ['**/*.js'] });
+export default node();
